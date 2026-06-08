@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator PPTX Proposal Skripsi - Rizky Nur Azizah</title>
+    <!-- Tailwind CSS for Beautiful UI -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- PptxGenJS Library (with JSZip included inside bundle) -->
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .merriweather {
+            font-family: 'Merriweather', serif;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-6">
+
+    <div class="max-w-2xl w-full bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden">
+        <!-- Header -->
+        <div class="bg-[#1B365D] p-8 text-white relative">
+            <div class="absolute top-0 right-0 w-32 h-full opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+            <span class="text-[#8FA89B] text-xs font-bold uppercase tracking-wider block mb-2">Program Studi Psikologi | FK UNHAS</span>
+            <h1 class="text-2xl font-bold merriweather leading-snug">PowerPoint (.pptx) File Generator</h1>
+            <p class="text-slate-300 text-sm mt-2">Buat file PPTX seminar proposal asli secara instan dan aman dari browser Anda.</p>
+        </div>
+
+        <!-- Content & Instructions -->
+        <div class="p-8 space-y-6">
+            <div class="bg-[#FAF9F6] border border-slate-200/60 rounded-xl p-5 space-y-3 text-slate-700">
+                <h3 class="font-bold text-[#1B365D] flex items-center gap-2">
+                    <i class="fa-solid fa-circle-info text-[#8FA89B]"></i> Alur Presentasi 9 Slide (Format PPTX):
+                </h3>
+                <ol class="list-decimal list-inside space-y-1.5 text-sm text-slate-600">
+                    <li><strong>Slide 1:</strong> Judul & Identitas (Warna Dasar Navy)</li>
+                    <li><strong>Slide 2:</strong> Latar Belakang (Fenomena Data Lingkaran 49.71% & 92%)</li>
+                    <li><strong>Slide 3:</strong> Faktor Pengambilan Keputusan & Peran CDMSE (Gabungan)</li>
+                    <li><strong>Slide 4:</strong> Mekanisme SCCT & Peran Lingkungan Belajar Sekolah</li>
+                    <li><strong>Slide 5:</strong> Komparasi 3 Jenis Karakteristik Sekolah</li>
+                    <li><strong>Slide 6:</strong> Kesenjangan Penelitian (Research Gap Verbatim - Warna Navy)</li>
+                    <li><strong>Slide 7:</strong> Rumusan Masalah, Tujuan & Manfaat</li>
+                    <li><strong>Slide 8:</strong> Metodologi Bagian 1 (Desain, Variabel, G*Power 180 Partisipan)</li>
+                    <li><strong>Slide 9:</strong> Metodologi Bagian 2 (Alat Ukur CDSES, One-Way ANOVA) & Penutup</li>
+                </ol>
+            </div>
+
+            <div class="space-y-4">
+                <button onclick="generatePresentation()" class="w-full bg-[#1B365D] hover:bg-[#142948] text-[#FAF9F6] font-semibold py-4 px-6 rounded-xl transition duration-200 flex items-center justify-center gap-3 shadow-lg shadow-blue-900/10 active:scale-[0.98]">
+                    <i class="fa-solid fa-file-powerpoint text-xl text-[#8FA89B]"></i>
+                    Unduh File PowerPoint (.pptx)
+                </button>
+                <p class="text-center text-xs text-slate-400">File akan terunduh langsung dengan nama <code class="bg-slate-100 px-1.5 py-0.5 rounded text-slate-600">studi_komparatif_cdmse_sma.pptx</code></p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-slate-50 px-8 py-4 border-t border-slate-100 flex justify-between items-center text-xs text-slate-500">
+            <span>Rizky Nur Azizah - Universitas Hasanuddin</span>
+            <span class="font-bold text-[#1B365D]">UNHAS 2026</span>
+        </div>
+    </div>
+
+    <script>
+        function generatePresentation() {
+            // Initialize PptxGenJS
+            let pptx = new PptxGenJS();
+            
+            // Set 16:9 widescreen layout
+            pptx.layout = 'LAYOUT_16_9';
+
+            // Constants Colors
+            const NAVY = '1B365D';
+            const SAGE = '8FA89B';
+            const OFFWHITE = 'FAF9F6';
+            const DARK = '2D3748';
+            const GRAY = '718096';
+            const WHITE = 'FFFFFF';
+
+            // ==========================================
+            // SLIDE 1: COVER
+            // ==========================================
+            let slide1 = pptx.addSlide();
+            slide1.background = { fill: NAVY };
+
+            // Clean side accent panel
+            slide1.addShape(pptx.shapes.RECTANGLE, { x: 9.8, y: 0, w: 3.5, h: 7.5, fill: SAGE });
+            slide1.addShape(pptx.shapes.RECTANGLE, { x: 9.5, y: 0, w: 0.3, h: 7.5, fill: OFFWHITE });
+
+            // Title block
+            slide1.addText(
+                "STUDI KOMPARATIF CAREER DECISION-MAKING SELF-EFFICACY (CDMSE) PADA SISWA SMA BERDASARKAN LINGKUNGAN PENDIDIKAN",
+                { x: 0.8, y: 1.5, w: 8.0, h: 2.2, fontSize: 24, fontFace: 'Merriweather', color: OFFWHITE, bold: true, align: 'left', lineSpacing: 34 }
+            );
+            slide1.addText(
+                "BOARDING SCHOOL, SEKOLAH REGULER, DAN PONDOK PESANTREN",
+                { x: 0.8, y: 3.8, w: 8.0, h: 0.5, fontSize: 13, fontFace: 'Plus Jakarta Sans', color: SAGE, bold: true, align: 'left' }
+            );
+
+            // Metadata info
+            slide1.addText(
+                "Seminar Proposal Skripsi\nOleh: Rizky Nur Azizah\nUniversitas Hasanuddin",
+                { x: 0.8, y: 4.8, w: 8.0, h: 1.2, fontSize: 11, fontFace: 'Plus Jakarta Sans', color: OFFWHITE, align: 'left', lineSpacing: 18 }
+            );
+
+
+            // ==========================================
+            // SLIDE 2: LATAR BELAKANG (FENOMENA)
+            // ==========================================
+            let slide2 = pptx.addSlide();
+            slide2.background = { fill: OFFWHITE };
+
+            // Header Elements
+            slide2.addShape(pptx.shapes.RECTANGLE, { x: 0.8, y: 0.6, w: 11.7, h: 0.03, fill: NAVY });
+            slide2.addText("Latar Belakang: Fenomena Kebingungan Karier", { x: 0.8, y: 0.7, w: 11.7, h: 0.6, fontSize: 20, fontFace: 'Merriweather', color: NAVY, bold: true });
+
+            // Left Column Bullets
+            slide2.addText([
+                { text: "Pemilihan karier merupakan tugas perkembangan krusial bagi remaja akhir di jenjang sekolah menengah (SMA).", options: { bullet: true, color: DARK, fontSize: 12, fontFace: 'Plus Jakarta Sans' } },
+                { text: "\nSiswa memerlukan kesiapan psikologis untuk memahami potensi diri, mengeksplorasi pilihan, dan menentukan keputusan karier yang adaptif.", options: { bullet: true, color: DARK, fontSize: 12, fontFace: 'Plus Jakarta Sans' } },
+                { text: "\nNamun realitanya, kebingungan karier masih menjadi hambatan masif yang nyata dihadapi siswa sekolah menengah di Indonesia.", options: { bullet: true, color: DARK, fontSize: 12, fontFace: 'Plus Jakarta Sans' } }
+            ], { x: 0.8, y: 1.8, w: 5.6, h: 4.5, align: 'left', lineSpacing: 20 });
+
+            // Right Column Cards with big stats
+            // Card 1
+            slide2.addShape(pptx.shapes.ROUNDED_RECTANGLE, { x: 7.2, y: 1.8, w: 4.8, h: 2.1, fill: WHITE, line: { color: NAVY, width: 1.5 } });
+            slide2.addText("49.71%", { x: 7.5, y: 2.0, w: 4.2, h: 0.6, fontSize: 28, fontFace: 'Merriweather', color: NAVY, bold: true });
+            slide2.addText("Siswa SMA mengalami kesulitan dalam memilih jurusan pendidikan lanjutan setelah lulus kuliah.\n(Simanjuntak et al., 2024)", { x: 7.5, y: 2.6, w: 4.2, h: 1.1, fontSize: 10, fontFace: 'Plus Jakarta Sans', color: GRAY, lineSpacing: 14 });
+
+            // Card 2
+            slide2.addShape(pptx.shapes.ROUNDED_RECTANGLE, { x: 7.2, y: 4.2, w: 4.8, h: 2.1, fill: WHITE, line: { color: SAGE, width: 1.5 } });
+            slide2.addText("92.00%", { x: 7.5, y: 4.4, w: 4.2, h: 0.6, fontSize: 28, fontFace: 'Merriweather', color: SAGE, bold: true });
+            slide2.addText("Siswa SMA mengalami kebingungan dan ketidakpastian terkait pilihan karir masa depannya.\n(Febrianti & Sarajar, 2024)", { x: 7.5, y: 5.0, w: 4.2, h: 1.1, fontSize: 10, fontFace: 'Plus Jakarta Sans', color: GRAY, lineSpacing: 14 });
+
+
+            // ==========================================
+            // SLIDE 3: FAKTOR KEPUTUSAN KARIER & PERAN CDMSE
+            // ==========================================
+            let slide3 = pptx.addSlide();
+            slide3.background = { fill: OFFWHITE };
+
+            // Header
+            slide3.addShape(pptx.shapes.RECTANGLE, { x: 0.8, y: 0.6, w: 11.7, h: 0.03, fill: NAVY });
+            slide3.addText("Faktor Keputusan Karier & Peran CDMSE", { x: 0.8, y: 0.7, w: 11.7, h: 0.6, fontSize: 20, fontFace: 'Merriweather', color: NAVY, bold: true });
+
+            // Left Card: Faktor
+            slide3.addShape(pptx.shapes.ROUNDED_RECTANGLE, { x: 0.8, y: 1.8, w: 5.6, h: 4.5, fill: WHITE, line: { color: NAVY, width: 1 } });
+            slide3.addText("Faktor yang Memengaruhi", { x: 1.2, y: 2.1, w: 4.8, h: 0.5, fontSize: 15, fontFace: 'Merriweather', color: NAVY, bold: true });
+            slide3.addText([
+                { text: "Faktor Internal:", options: { bold: true, color: NAVY, fontSize: 11, fontFace: 'Plus Jakarta Sans' } },
+                { text: " Banyak siswa belum memiliki pemahaman yang memadai mengenai minat, kemampuan, serta potensi dirinya.", options: { color: DARK, fontSize: 11, fontFace: 'Plus Jakarta Sans' } },
+                { text: "\n\nFaktor Eksternal:", options: { bold: true, color: NAVY, fontSize: 11, fontFace: 'Plus Jakarta Sans' } },
+                { text: " Pengaruh lingkungan sosial, keterbatasan informasi karir mandiri, serta tekanan dari orang tua/peer group.", options: { color: DARK, fontSize: 11, fontFace: 'Plus Jakarta Sans' } },
+                { text: "\n\nDampak:", options: { bold: true, color: NAVY, fontSize: 11, fontFace: 'Plus Jakarta Sans' } },
+                { text: " Ketidaksiapan perencanaan karir memicu keraguan kronis yang memengaruhi keyakinan diri siswa.", options: { color: DARK, fontSize: 11, fontFace: 'Plus Jakarta Sans' } }
+            ], { x: 1.2, y: 2.7, w: 4.8, h: 3.3, lineSpacing: 18 });
+
+            // Right Card: CDMSE Indikator Kesiapan
+            slide3.addShape(pptx.shapes.ROUNDED_RECTANGLE, { x: 6.9, y: 1.8, w: 5.6, h: 4.5, fill: WHITE, line: { color: SAGE, width: 1 } });
+            slide3.addText("CDMSE Sebagai Indikator Kesiapan", { x: 7.3, y: 2.1, w: 4.8, h: 0.5, fontSize: 15, fontFace: 'Merriweather', color: NAVY, bold: true });
+            slide3.addText([
+                { text: "Career Decision-Making Self-Efficacy (CDMSE):", options: { bold: true, color: SAGE, fontSize: 11, fontFace: 'Plus Jakarta Sans' } },
+                { text: " Keyakinan diri terhadap kapasitasnya melakukan tugas-tugas penentu pilihan masa depan (Taylor & Betz, 1983).", options: { color: DARK, fontSize: 11, fontFace: 'Plus Jakarta Sans' } },
+                { text: "\n\nEfikasi Tinggi:", options: { bold: true, color: SAGE, fontSize: 11, fontFace: 'Plus Jakarta Sans' } },
+                { text: " Kemampuan eksplorasi mandiri gigih, pengumpulan data karir yang matang, dan keputusan adaptif (Xin et al., 2023).", options: { color: DARK, fontSize: 11, fontFace: 'Plus Jakarta Sans' } },
+                { text: "\n\nEfikasi Rendah:", options: { bold: true, color: SAGE, fontSize: 11, fontFace: 'Plus Jakarta Sans' } },
+                { text: " Menyebabkan prokrastinasi pengambilan keputusan, kebingungan karir umum, serta keraguan kronis (Xia et al., 2025).", options: { color: DARK, fontSize: 11, fontFace: 'Plus Jakarta Sans' } }
+            ], { x: 7.3, y: 2.7, w: 4.8, h: 3.3, lineSpacing: 18 });
+
+
+            // ==========================================
+            // SLIDE 4: MEKANISME SCCT & PERAN LINGKUNGAN PENDIDIKAN
+            // ==========================================
+            let slide4 = pptx.addSlide();
+            slide4.background = { fill: OFFWHITE };
+
+            // Header
+            slide4.addShape(pptx.shapes.RECTANGLE, { x: 0.8, y: 0.6, w: 11.7, h: 0.03, fill: NAVY });
+            slide4.addText("Mekanisme SCCT & Peran Lingkungan", { x: 0.8, y: 0.7, w: 11.7, h: 0.6, fontSize: 20, fontFace: 'Merriweather', color: NAVY, bold: true });
+
+            // Left Block: SCCT
+            slide4.addShape(pptx.shapes.ROUNDED_RECTANGLE, { x: 0.8, y: 1.8, w: 5.6, h: 4.5, fill: WHITE, line: { color: NAVY, width: 1 } });
+            slide4.addText("Mekanisme Utama SCCT", { x: 1.2, y: 2.1, w: 4.8, h: 0.5, fontSize: 15, fontFace: 'Merriweather', color: NAVY, bold: true });
+            slide4.addText([
+                { text: "Merujuk pada Social Cognitive Career Theory (SCCT), keyakinan diri karir tidak muncul secara instan melainkan dibentuk oleh pengalaman belajar atau ", options: { color: DARK, fontSize: 11, fontFace: 'Plus Jakarta Sans' } },
+                { text: "learning experiences", options: { italic: true, bold: true, color: NAVY, fontSize: 11, fontFace: 'Plus Jakarta Sans' } },
+                { text: " (Lent et al., 1994).", options: { color: DARK, fontSize: 11, fontFace: 'Plus Jakarta Sans' } },
+                { text: "\n\nVariabel eksternal lingkungan menyaring pengaruhnya dengan terlebih dahulu membentuk pengalaman belajar subjektif yang dialami individu sebelum bertransformasi menjadi self-efficacy (Xia et al., 2025).", options: { color: DARK, fontSize: 11, fontFace: 'Plus Jakarta Sans' } }
+            ], { x: 1.2, y: 2.7, w: 4.8, h: 3.3, lineSpacing: 18 });
+
+            // Right Block: Sekolah
+            slide4.addShape(pptx.shapes.ROUNDED_RECTANGLE, { x: 6.9, y: 1.8, w: 5.6, h: 4.5, fill: WHITE, line: { color: SAGE, width: 1 } });
+            slide4.addText("Sekolah Sebagai Konteks Utama", { x: 7.3, y: 2.1, w: 4.8, h: 0.5, fontSize: 15, fontFace: 'Merriweather', color: NAVY, bold: true });
+            slide4.addText([
+                { text: "Sekolah merupakan lingkungan ekologis mikro utama bagi remaja untuk mendapatkan akses informasi karir, model sosial, dan kesempatan melakukan eksplorasi (Sawitri et al., 2021).", options: { color: DARK, fontSize: 11, fontFace: 'Plus Jakarta Sans' } },
+                { text: "\n\nStudi menunjukkan bahwa karakteristik lingkungan belajar yang lebih terstruktur, suportif, serta berpola asrama memicu pembentukan pengalaman belajar yang lebih intens dan mendorong CDMSE yang lebih tinggi (Abidin et al., 2019; Liu et al., 2024).", options: { color: DARK, fontSize: 11, fontFace: 'Plus Jakarta Sans' } }
+            ], { x: 7.3, y: 2.7, w: 4.8, h: 3.3, lineSpacing: 18 });
+
+
+            // ==========================================
+            // SLIDE 5: KOMPARASI KARAKTERISTIK 3 JENIS SEKOLAH
+            // ==========================================
+            let slide5 = pptx.addSlide();
+            slide5.background = { fill: OFFWHITE };
+
+            // Header
+            slide5.addShape(pptx.shapes.RECTANGLE, { x: 0.8, y: 0.6, w: 11.7, h: 0.03, fill: NAVY });
+            slide5.addText("Konteks Komparasi 3 Jenis Sekolah", { x: 0.8, y: 0.7, w: 11.7, h: 0.6, fontSize: 20, fontFace: 'Merriweather', color: NAVY, bold: true });
+
+            // 3 Columns Cards
+            // Col 1: Reguler
+            slide5.addShape(pptx.shapes.ROUNDED_RECTANGLE, { x: 0.8, y: 1.8, w: 3.6, h: 4.5, fill: WHITE, line: { color: NAVY, width: 1 } });
+            slide5.addText("01", { x: 1.1, y: 2.1, w: 1.0, h: 0.4, fontSize: 22, fontFace: 'Merriweather', color: SAGE, bold: true });
+            slide5.addText("Sekolah Reguler", { x: 1.1, y: 2.6, w: 3.0, h: 0.4, fontSize: 14, fontFace: 'Merriweather', color: NAVY, bold: true });
+            slide5.addText("Menawarkan akses informasi akademik/karier yang cenderung terbuka, interaksi sosial luas sehari-hari, serta kesempatan ekplorasi secara mandiri (OECD, 2019).", { x: 1.1, y: 3.1, w: 3.0, h: 2.8, fontSize: 11, fontFace: 'Plus Jakarta Sans', color: DARK, lineSpacing: 16 });
+
+            // Col 2: Pesantren
+            slide5.addShape(pptx.shapes.ROUNDED_RECTANGLE, { x: 4.85, y: 1.8, w: 3.6, h: 4.5, fill: WHITE, line: { color: NAVY, width: 1 } });
+            slide5.addText("02", { x: 5.15, y: 2.1, w: 1.0, h: 0.4, fontSize: 22, fontFace: 'Merriweather', color: SAGE, bold: true });
+            slide5.addText("Pondok Pesantren", { x: 5.15, y: 2.6, w: 3.0, h: 0.4, fontSize: 14, fontFace: 'Merriweather', color: NAVY, bold: true });
+            slide5.addText("Khas dengan nilai keagamaan terstruktur ketat, pola asrama, di mana arah penentuan pilihan karir dipandu koridor nilai/norma kolektif pesantren (Dhofier, 2011).", { x: 5.15, y: 3.1, w: 3.0, h: 2.8, fontSize: 11, fontFace: 'Plus Jakarta Sans', color: DARK, lineSpacing: 16 });
+
+            // Col 3: Boarding
+            slide5.addShape(pptx.shapes.ROUNDED_RECTANGLE, { x: 8.9, y: 1.8, w: 3.6, h: 4.5, fill: WHITE, line: { color: NAVY, width: 1 } });
+            slide5.addText("03", { x: 9.2, y: 2.1, w: 1.0, h: 0.4, fontSize: 22, fontFace: 'Merriweather', color: SAGE, bold: true });
+            slide5.addText("Boarding School", { x: 9.2, y: 2.6, w: 3.0, h: 0.4, fontSize: 14, fontFace: 'Merriweather', color: NAVY, bold: true });
+            slide5.addText("Sistem asrama modern terintegrasi, melahirkan pola kemandirian, tanggung jawab tinggi, serta interaksi intensif dalam lingkungan sekolah terkontrol (Martin et al., 2014).", { x: 9.2, y: 3.1, w: 3.0, h: 2.8, fontSize: 11, fontFace: 'Plus Jakarta Sans', color: DARK, lineSpacing: 16 });
+
+
+            // ==========================================
+            // SLIDE 6: RESEARCH GAP (CONTRAST SLIDE)
+            // ==========================================
+            let slide6 = pptx.addSlide();
+            slide6.background = { fill: NAVY };
+
+            // Title
+            slide6.addText("Kesenjangan Penelitian (Research Gap)", { x: 1.0, y: 1.2, w: 11.3, h: 0.5, fontSize: 18, fontFace: 'Plus Jakarta Sans', color: SAGE, bold: true });
+
+            // Paragraph Context
+            slide6.addText(
+                "Sebagian besar penelitian menegaskan pentingnya faktor lingkungan dalam pembentukan CDMSE secara umum, tetapi belum secara spesifik mengkaji jenis sekolah sebagai konteks pembentuk pengalaman belajar.",
+                { x: 1.0, y: 2.0, w: 11.3, h: 1.2, fontSize: 14, fontFace: 'Plus Jakarta Sans', color: OFFWHITE, italic: true, lineSpacing: 22 }
+            );
+
+            // Divider Line
+            slide6.addShape(pptx.shapes.RECTANGLE, { x: 1.0, y: 3.5, w: 3.0, h: 0.03, fill: SAGE });
+
+            // VERBATIM STATEMENT (THE ESSENCE OF GAP)
+            slide6.addText(
+                "\"Akibatnya, belum terdapat penelitian komparatif yang secara spesifik menguji CDMSE berdasarkan jenis sekolah di Indonesia.\"",
+                { x: 1.0, y: 4.0, w: 11.3, h: 1.8, fontSize: 22, fontFace: 'Merriweather', color: SAGE, bold: true, lineSpacing: 32 }
+            );
+
+
+            // ==========================================
+            // SLIDE 7: RUMUSAN MASALAH, TUJUAN & MANFAAT
+            // ==========================================
+            let slide7 = pptx.addSlide();
+            slide7.background = { fill: OFFWHITE };
+
+            // Header
+            slide7.addShape(pptx.shapes.RECTANGLE, { x: 0.8, y: 0.6, w: 11.7, h: 0.03, fill: NAVY });
+            slide7.addText("Rumusan Masalah, Tujuan & Manfaat", { x: 0.8, y: 0.7, w: 11.7, h: 0.6, fontSize: 20, fontFace: 'Merriweather', color: NAVY, bold: true });
+
+            // Left Card: Rumusan & Tujuan
+            slide7.addShape(pptx.shapes.ROUNDED_RECTANGLE, { x: 0.8, y: 1.8, w: 5.6, h: 4.5, fill: WHITE, line: { color: NAVY, width: 1 } });
+            slide7.addText("Rumusan & Tujuan", { x: 1.2, y: 2.1, w: 4.8, h: 0.5, fontSize: 15, fontFace: 'Merriweather', color: NAVY, bold: true });
+            slide7.addText([
+                { text: "Rumusan Masalah:", options: { bold: true, color: NAVY, fontSize: 11, fontFace: 'Plus Jakarta Sans' } },
+                { text: "\nApakah terdapat perbedaan career decision-making self-efficacy (CDMSE) berdasarkan jenis sekolah (sekolah reguler, boarding school, dan pondok pesantren) pada siswa SMA?", options: { color: DARK, fontSize: 11, fontFace: 'Plus Jakarta Sans' } },
+                { text: "\n\nTujuan Penelitian:", options: { bold: true, color: NAVY, fontSize: 11, fontFace: 'Plus Jakarta Sans' } },
+                { text: "\nMenguji secara empiris perbedaan CDMSE antar kelompok siswa berdasarkan tipe lingkungan pendidikan tersebut.", options: { color: DARK, fontSize: 11, fontFace: 'Plus Jakarta Sans' } }
+            ], { x: 1.2, y: 2.7, w: 4.8, h: 3.3, lineSpacing: 18 });
+
+            // Right Card: Manfaat
+            slide7.addShape(pptx.shapes.ROUNDED_RECTANGLE, { x: 6.9, y: 1.8, w: 5.6, h: 4.5, fill: WHITE, line: { color: SAGE, width: 1 } });
+            slide7.addText("Signifikansi & Manfaat", { x: 7.3, y: 2.1, w: 4.8, h: 0.5, fontSize: 15, fontFace: 'Merriweather', color: NAVY, bold: true });
+            slide7.addText([
+                { text: "Manfaat Teoretis:", options: { bold: true, color: SAGE, fontSize: 11, fontFace: 'Plus Jakarta Sans' } },
+                { text: "\nBerkontribusi bagi psikologi perkembangan karir remaja, mengintegrasikan kerangka teori SCCT pada variasi ekologis sekolah yang riil.", options: { color: DARK, fontSize: 11, fontFace: 'Plus Jakarta Sans' } },
+                { text: "\n\nManfaat Praktis:", options: { bold: true, color: SAGE, fontSize: 11, fontFace: 'Plus Jakarta Sans' } },
+                { text: "\nMembantu guru BK atau konselor sekolah merancang program intervensi kesiapan karir yang kontekstual/spesifik berdasarkan pola lingkungan siswa (asrama, pesantren, sekolah umum).", options: { color: DARK, fontSize: 11, fontFace: 'Plus Jakarta Sans' } }
+            ], { x: 7.3, y: 2.7, w: 4.8, h: 3.3, lineSpacing: 18 });
+
+
+            // ==========================================
+            // SLIDE 8: METODE PENELITIAN (BAGIAN 1)
+            // ==========================================
+            let slide8 = pptx.addSlide();
+            slide8.background = { fill: OFFWHITE };
+
+            // Header
+            slide8.addShape(pptx.shapes.RECTANGLE, { x: 0.8, y: 0.6, w: 11.7, h: 0.03, fill: NAVY });
+            slide8.addText("Metodologi Riset: Desain & Partisipan", { x: 0.8, y: 0.7, w: 11.7, h: 0.6, fontSize: 20, fontFace: 'Merriweather', color: NAVY, bold: true });
+
+            // Left Big Stat Node (Card)
+            slide8.addShape(pptx.shapes.ROUNDED_RECTANGLE, { x: 0.8, y: 1.8, w: 4.0, h: 4.5, fill: WHITE, line: { color: NAVY, width: 1.5 } });
+            slide8.addText("180", { x: 1.1, y: 2.3, w: 3.4, h: 1.2, fontSize: 72, fontFace: 'Merriweather', color: NAVY, bold: true, align: 'center' });
+            slide8.addText("Partisipan Minimal", { x: 1.1, y: 3.5, w: 3.4, h: 0.4, fontSize: 13, fontFace: 'Plus Jakarta Sans', color: SAGE, bold: true, align: 'center' });
+            slide8.addText("Dialokasikan minimal 60 siswa aktif per kelompok sekolah (Quota Purposive Sampling).", { x: 1.1, y: 4.1, w: 3.4, h: 1.5, fontSize: 11, fontFace: 'Plus Jakarta Sans', color: GRAY, align: 'center', lineSpacing: 16 });
+
+            // Right Core Parameters Block
+            slide8.addShape(pptx.shapes.ROUNDED_RECTANGLE, { x: 5.3, y: 1.8, w: 7.2, h: 4.5, fill: WHITE, line: { color: SAGE, width: 1 } });
+            slide8.addText("Struktur Desain Kuantitatif", { x: 5.7, y: 2.1, w: 6.4, h: 0.4, fontSize: 15, fontFace: 'Merriweather', color: NAVY, bold: true });
+            slide8.addText([
+                { text: "Desain Penelitian: ", options: { bold: true, color: SAGE, fontSize: 11, fontFace: 'Plus Jakarta Sans' } },
+                { text: "Pendekatan kuantitatif komparatif non-eksperimental dengan metode pengukuran cross-sectional.", options: { color: DARK, fontSize: 11, fontFace: 'Plus Jakarta Sans' } },
+                { text: "\n\nIdentifikasi Variabel: ", options: { bold: true, color: SAGE, fontSize: 11, fontFace: 'Plus Jakarta Sans' } },
+                { text: "\n• Variabel Dependen: Career Decision-Making Self-Efficacy (CDMSE)\n• Variabel Independen: Jenis Sekolah (Reguler, Boarding School, Pondok Pesantren)", options: { color: DARK, fontSize: 11, fontFace: 'Plus Jakarta Sans' } },
+                { text: "\n\nAnalisis Kekuatan G*Power 3.1: ", options: { bold: true, color: SAGE, fontSize: 11, fontFace: 'Plus Jakarta Sans' } },
+                { text: "Menetapkan parameter F-Tests (One-Way ANOVA), effect size sedang (f = 0.25), signifikansi (alpha = 0.05), serta kekuatan statistik (power = 0.85) -> Menghasilkan minimal sampel 180 partisipan.", options: { color: DARK, fontSize: 11, fontFace: 'Plus Jakarta Sans' } }
+            ], { x: 5.7, y: 2.6, w: 6.4, h: 3.4, lineSpacing: 16 });
+
+
+            // ==========================================
+            // SLIDE 9: METODE PENELITIAN (BAGIAN 2) & PENUTUP
+            // ==========================================
+            let slide9 = pptx.addSlide();
+            slide9.background = { fill: OFFWHITE };
+
+            // Header
+            slide9.addShape(pptx.shapes.RECTANGLE, { x: 0.8, y: 0.6, w: 11.7, h: 0.03, fill: NAVY });
+            slide9.addText("Alat Ukur & Prosedur Analisis", { x: 0.8, y: 0.7, w: 11.7, h: 0.6, fontSize: 20, fontFace: 'Merriweather', color: NAVY, bold: true });
+
+            // Left Block: Alat Ukur
+            slide9.addShape(pptx.shapes.ROUNDED_RECTANGLE, { x: 0.8, y: 1.8, w: 5.6, h: 4.5, fill: WHITE, line: { color: NAVY, width: 1 } });
+            slide9.addText("Alat Ukur / Skala Kuesioner", { x: 1.2, y: 2.1, w: 4.8, h: 0.5, fontSize: 15, fontFace: 'Merriweather', color: NAVY, bold: true });
+            slide9.addText([
+                { text: "Skala CDSES Versi Indonesia:", options: { bold: true, color: NAVY, fontSize: 11, fontFace: 'Plus Jakarta Sans' } },
+                { text: " Mengadopsi instrumen baku Tarumanagara Career Decision Self-Efficacy Scale (CDSES).", options: { color: DARK, fontSize: 11, fontFace: 'Plus Jakarta Sans' } },
+                { text: "\n\nKonstruksi Aitem:", options: { bold: true, color: NAVY, fontSize: 11, fontFace: 'Plus Jakarta Sans' } },
+                { text: " Terdiri atas 30 item utuh yang mengukur keyakinan diri dalam eksplorasi informasi karir, pemilihan tujuan, apresiasi diri, prestasi sekolah, pemecahan masalah, dukungan sosial, dan perencanaan karir.", options: { color: DARK, fontSize: 11, fontFace: 'Plus Jakarta Sans' } },
+                { text: "\n\nTanpa Modifikasi:", options: { bold: true, color: NAVY, fontSize: 11, fontFace: 'Plus Jakarta Sans' } },
+                { text: " Skala disebarkan utuh guna menjaga struktur validitas isi serta reliabilitas tepercaya yang terbukti memadai dari riset-riset sebelumnya.", options: { color: DARK, fontSize: 11, fontFace: 'Plus Jakarta Sans' } }
+            ], { x: 1.2, y: 2.7, w: 4.8, h: 3.3, lineSpacing: 16 });
+
+            // Right Block: Prosedur Analisis
+            slide9.addShape(pptx.shapes.ROUNDED_RECTANGLE, { x: 6.9, y: 1.8, w: 5.6, h: 4.5, fill: WHITE, line: { color: SAGE, width: 1 } });
+            slide9.addText("Prosedur Statistik Analisis", { x: 7.3, y: 2.1, w: 4.8, h: 0.5, fontSize: 15, fontFace: 'Merriweather', color: NAVY, bold: true });
+            slide9.addText([
+                { text: "Uji Asumsi Prasyarat:", options: { bold: true, color: SAGE, fontSize: 11, fontFace: 'Plus Jakarta Sans' } },
+                { text: " Melakukan uji normalitas sebaran data serta uji homogenitas varians kelompok secara ketat untuk prasyarat statistika parametrik.", options: { color: DARK, fontSize: 11, fontFace: 'Plus Jakarta Sans' } },
+                { text: "\n\nAnalisis Utama (One-Way ANOVA):", options: { bold: true, color: SAGE, fontSize: 11, fontFace: 'Plus Jakarta Sans' } },
+                { text: " Digunakan untuk menguji secara komparatif perbedaan rata-rata skor CDMSE antar kelompok sekolah.", options: { color: DARK, fontSize: 11, fontFace: 'Plus Jakarta Sans' } },
+                { text: "\n\nAnalisis Lanjutan (Post Hoc Test):", options: { bold: true, color: SAGE, fontSize: 11, fontFace: 'Plus Jakarta Sans' } },
+                { text: " Dilakukan apabila ditemukan hasil uji ANOVA yang signifikan, untuk mengidentifikasi kelompok mana yang secara spesifik berbeda secara nyata.", options: { color: DARK, fontSize: 11, fontFace: 'Plus Jakarta Sans' } }
+            ], { x: 7.3, y: 2.7, w: 4.8, h: 3.3, lineSpacing: 16 });
+
+
+            // ==========================================
+            // SLIDE 10: TERIMA KASIH (NAVY ENDING SLIDE)
+            // ==========================================
+            let slide10 = pptx.addSlide();
+            slide10.background = { fill: NAVY };
+
+            // Clean side accent panel
+            slide10.addShape(pptx.shapes.RECTANGLE, { x: 9.8, y: 0, w: 3.5, h: 7.5, fill: SAGE });
+            slide10.addShape(pptx.shapes.RECTANGLE, { x: 9.5, y: 0, w: 0.3, h: 7.5, fill: OFFWHITE });
+
+            // Thank you block
+            slide10.addText("Sekian &\nTerima Kasih", { x: 0.8, y: 1.8, w: 8.0, h: 1.8, fontSize: 44, fontFace: 'Merriweather', color: OFFWHITE, bold: true, align: 'left', lineSpacing: 50 });
+            
+            slide10.addText("Sesi Tanya Jawab & Diskusi", { x: 0.8, y: 3.8, w: 8.0, h: 0.5, fontSize: 15, fontFace: 'Plus Jakarta Sans', color: SAGE, bold: true, align: 'left' });
+
+            slide10.addText(
+                "Saya sangat menghargai masukan, saran konstruktif, serta pertanyaan dari Dewan Dosen Penguji demi penyempurnaan proposal penelitian ini.\n\nKontak Peneliti: rizkynurazizah4@gmail.com",
+                { x: 0.8, y: 4.6, w: 8.0, h: 1.5, fontSize: 11, fontFace: 'Plus Jakarta Sans', color: OFFWHITE, align: 'left', lineSpacing: 18 }
+            );
+
+
+            // Save presentation with specific file name
+            pptx.writeFile({ fileName: 'studi_komparatif_cdmse_sma' });
+        }
+    </script>
+
+</body>
+</html>
+```eof
+
+### Cara Menggunakan File Generator Ini Sangat Mudah:
+
+1. **Simpan File:** Salin dan simpan semua kode HTML di atas ke komputer Anda dengan nama file berakhiran `.html` (contoh: `buat_pptx.html`).
+2. **Buka di Browser:** *Double-click* file tersebut untuk membukanya di browser (Google Chrome, Microsoft Edge, Safari, atau Mozilla Firefox)[cite: 4].
+3. **Unduh File PPTX:** Klik tombol **"Unduh File PowerPoint (.pptx)"** yang berwarna biru gelap di halaman tersebut.
+4. **Buka di PowerPoint/Google Slides:** File PowerPoint asli bernama `studi_komparatif_cdmse_sma.pptx` akan langsung masuk ke folder Downloads komputer Anda! Anda bisa membukanya langsung di Microsoft PowerPoint atau mengunggahnya (*upload*) ke Google Slides untuk langsung diedit secara bebas.
+
+Dengan metode generator ini, file PowerPoint Anda dijamin **tidak akan kosong**, semua teks dan data lingkaran di slide fenomena akan terkonversi menjadi bentuk dan kotak teks asli PowerPoint yang bersih, rapi, dan dinamis sesuai draf proposal skripsi Anda!
